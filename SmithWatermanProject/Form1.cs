@@ -75,10 +75,9 @@ namespace SmithWatermanProject
         public void degerleriAl()
         {
             int match, mismatch, gap;
-
-            textBox1.Clear();
-            textBox2.Clear();
-            textBox3.Clear();
+            //textBox1.Clear();
+            //textBox2.Clear();
+            //textBox3.Clear();
 
             if (textBox1.Text.Length == 0)
             {
@@ -218,24 +217,24 @@ namespace SmithWatermanProject
             return sonuc;
         }
 
-        public int dizinBoyutFarkıBul(string[] dizin1, string[] dizin2)
-        {
-            int fark = 0;
+        //public int dizinBoyutFarkıBul(string[] dizin1, string[] dizin2)
+        //{
+        //    int fark = 0;
 
-            if (dizin1.Length > dizin2.Length)
-            {
-                fark = dizin1.Length - dizin2.Length;
-            }
-            else if (dizin2.Length > dizin1.Length)
-            {
-                fark = dizin2.Length - dizin1.Length;
-            }
-            else if (dizin1.Length == dizin2.Length)
-            {
-                fark = 0;
-            }
-            return fark;
-        }
+        //    if (dizin1.Length > dizin2.Length)
+        //    {
+        //        fark = dizin1.Length - dizin2.Length;
+        //    }
+        //    else if (dizin2.Length > dizin1.Length)
+        //    {
+        //        fark = dizin2.Length - dizin1.Length;
+        //    }
+        //    else if (dizin1.Length == dizin2.Length)
+        //    {
+        //        fark = 0;
+        //    }
+        //    return fark;
+        //}
 
         void ilkKisimlariDoldur(string[] dizin1, string[] dizin2)
         {
@@ -333,7 +332,7 @@ namespace SmithWatermanProject
             int gap = Convert.ToInt32(textBox3.Text);
             int t1 = 0, t2 = 0, t3 = 0;
             Random rs = new Random(1);
-            int fark = dizinBoyutFarkıBul(dizin1, dizin2);
+            //int fark = dizinBoyutFarkıBul(dizin1, dizin2);
 
             for (int j = 2; j < dizin2.Length + 2; j++)//row //BU DA ORTA
             {
@@ -440,37 +439,48 @@ namespace SmithWatermanProject
                 jKomsular.Clear();
                 i = Convert.ToInt32(iDegerleri[a]);
                 j = Convert.ToInt32(jDegerleri[a]);
-                iKomsular.Add(i);
-                jKomsular.Add(j);
-                int komsu = Convert.ToInt32(dataGridView1.Rows[j].Cells[i].Value);
+                int komsu;
+                int karsilastirma = dizilimKarsilastirma(i,j);
 
-                while (komsu != 0)
+                if (karsilastirma==1)
                 {
-                    komsu = Convert.ToInt32(dataGridView1.Rows[j - 1].Cells[i - 1].Value);
-                    degerlerSecili.Add(komsu);
-                    iKomsular.Add(i - 1);
-                    jKomsular.Add(j - 1);
-                    i = i - 1;
-                    j = j - 1;
-                }
-                yeniSkor = skorBul(iKomsular, jKomsular);
-                if (skor < yeniSkor)
-                {
-                    skor = yeniSkor;
+                    iKomsular.Add(i);
+                    jKomsular.Add(j);
+                    komsu = Convert.ToInt32(dataGridView1.Rows[j].Cells[i].Value);
 
-                    iDegerleriSecili.Clear();
-                    jDegerleriSecili.Clear();
-
-                    for (int b = 0; b < iKomsular.Count; b++)
+                    while (komsu != 0)
                     {
-                        iDegerleriSecili.Add(iKomsular[b]);
-                        jDegerleriSecili.Add(jKomsular[b]);
+                        komsu = Convert.ToInt32(dataGridView1.Rows[j - 1].Cells[i - 1].Value);
+                        degerlerSecili.Add(komsu);
+                        iKomsular.Add(i - 1);
+                        jKomsular.Add(j - 1);
+                        i = i - 1;
+                        j = j - 1;
+                    }
+                    yeniSkor = skorBul(iKomsular, jKomsular);
+                    if (skor < yeniSkor)
+                    {
+                        skor = yeniSkor;
+
+                        iDegerleriSecili.Clear();
+                        jDegerleriSecili.Clear();
+
+                        for (int b = 0; b < iKomsular.Count; b++)
+                        {
+                            iDegerleriSecili.Add(iKomsular[b]);
+                            jDegerleriSecili.Add(jKomsular[b]);
+                        }
+                    }
+                    else
+                    {
+                        break;
                     }
                 }
-                else
+                else if (karsilastirma==-1)
                 {
-                    break;
+
                 }
+                
             }
             sonSkoruBul(iDegerleriSecili, jDegerleriSecili);
            
@@ -502,6 +512,7 @@ namespace SmithWatermanProject
             ArrayList dizilim1 = new ArrayList();
             ArrayList dizilim2 = new ArrayList();
             int match = Convert.ToInt32(textBox1.Text);
+            int mismatch= Convert.ToInt32(textBox2.Text);
 
             for (int a = liste1.Count-1; a >= 0; a--)//a=listelerde de gezienen indis değeri
             {
