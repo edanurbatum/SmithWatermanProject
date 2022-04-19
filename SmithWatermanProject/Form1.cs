@@ -18,9 +18,11 @@ namespace SmithWatermanProject
         {
             InitializeComponent();
         }
+
+        int sayac = 0;
         private void button2_Click(object sender, EventArgs e)
         {
-            //timer1.Start();
+            timer1.Start();
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Text|*.txt|All|*.*";
             openFileDialog.Multiselect = false;
@@ -176,7 +178,7 @@ namespace SmithWatermanProject
             gridviewDuzenle(dizin1, dizin2);
             hizala(dizin1, dizin2);
             toparla(dizin1, dizin2);
-            //timer1.Stop();
+            timer1.Stop();
         }
 
         public int dizilimKarsilastirma(int i, int j)
@@ -539,6 +541,13 @@ namespace SmithWatermanProject
             }
 
             textBox10.Text = skor.ToString();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            
+            sayac++;
+            label9.Text = "süre = " + sayac.ToString();
         }
     }
 }
