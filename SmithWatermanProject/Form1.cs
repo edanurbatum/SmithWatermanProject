@@ -390,8 +390,8 @@ namespace SmithWatermanProject
             }
 
             //enBuyuk = enBuyukBul(degerler);
-            ArrayList iDegerleriSecili = new ArrayList();
-            ArrayList jDegerleriSecili = new ArrayList();
+            ArrayList iDegerleriCop = new ArrayList();
+            ArrayList jDegerleriCop = new ArrayList();
 
             for (int a = 0; a < iDegerleri.Count; a++)
             {
@@ -404,27 +404,170 @@ namespace SmithWatermanProject
                     {
 
                     }
-                    else if (iFark==jFark)//bunlar komşu bacım
+                    else if (iFark == jFark)//bunlar komşu bacım
                     {
-                        listBox1.Items.Add(Convert.ToInt32(iDegerleri[a]));
-                        listBox2.Items.Add(Convert.ToInt32(jDegerleri[a]));
+                        if (Convert.ToInt32(degerler[a]) > Convert.ToInt32(degerler[b]))
+                        {
+                            iDegerleriCop.Add(iDegerleri[b]);
+                            jDegerleriCop.Add(jDegerleri[b]);
+                        }
                     }
                 }
             }
-        }
 
-        public int enBuyukBul(ArrayList liste1)
-        {
-            int enBuyuk = 0;
-            for (int i = 0; i < liste1.Count; i++)
+            for (int a = 0; a < iDegerleriCop.Count; a++)
             {
-                if (Convert.ToInt32(liste1[i]) > enBuyuk)
-                {
-                    enBuyuk = Convert.ToInt32(liste1[i]);
-                }
-
+                iDegerleri.Remove(iDegerleriCop[a]);
+                jDegerleri.Remove(jDegerleriCop[a]);
+                degerler.Remove(a);
             }
-            return enBuyuk;
+
+            yolla(iDegerleri, jDegerleri);
+
+            //foreach (int item in degerler)
+            //{
+            //    listBox1.Items.Add(item);
+            //}
+            //foreach (int item in jDegerleri)
+            //{
+            //    listBox2.Items.Add(item);
+            //}
         }
+        void yolla(ArrayList iDegerleri, ArrayList jDegerleri)
+        {
+            ArrayList iKomsular = new ArrayList();
+            ArrayList jKomsular = new ArrayList();
+            ArrayList iDegerleriSecili = new ArrayList();
+            ArrayList jDegerleriSecili = new ArrayList();
+            ArrayList degerlerSecili = new ArrayList();
+            //int a = 0;
+
+            //int i = Convert.ToInt32(iDegerleri[a]);
+            //int j = Convert.ToInt32(jDegerleri[a]);
+
+            int i, j;
+            int skor = 0;
+            int yeniSkor;
+
+            for (int a = 0; a < iDegerleri.Count; a++)
+            {
+                iKomsular.Clear();
+                jKomsular.Clear();
+                i = Convert.ToInt32(iDegerleri[a]);
+                j = Convert.ToInt32(jDegerleri[a]);
+                iKomsular.Add(i);
+                jKomsular.Add(j);
+                int komsu = Convert.ToInt32(dataGridView1.Rows[j].Cells[i].Value);
+
+                while (komsu != 0)
+                {
+                    komsu = Convert.ToInt32(dataGridView1.Rows[j - 1].Cells[i - 1].Value);
+                    degerlerSecili.Add(komsu);
+                    iKomsular.Add(i - 1);
+                    jKomsular.Add(j - 1);
+                    //dataGridView1.Rows[j - 1].Cells[i - 1].Style.BackColor = Color.LightGreen;
+                    i = i - 1;
+                    j = j - 1;
+                }
+                yeniSkor = skorBul(iKomsular, jKomsular);
+                if (skor < yeniSkor)
+                {
+                    skor = yeniSkor;
+
+                    iDegerleriSecili.Clear();
+                    jDegerleriSecili.Clear();
+
+                    for (int b = 0; b < iKomsular.Count; b++)
+                    {
+                        iDegerleriSecili.Add(iKomsular[b]);
+                        jDegerleriSecili.Add(jKomsular[b]);
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
+            sonSkoruBul(iDegerleriSecili, jDegerleriSecili);
+            foreach (int item in iDegerleriSecili)
+            {
+                listBox1.Items.Add(item);
+            }
+            foreach (int item in jDegerleriSecili)
+            {
+                listBox2.Items.Add(item);
+            }
+        }
+
+        public int skorBul(ArrayList iDegerleriSecili, ArrayList jDegerleriSecili)
+        {
+            int skor = 0;
+            ArrayList dizilim1 = new ArrayList();
+            ArrayList dizilim2 = new ArrayList();
+            int match = Convert.ToInt32(textBox1.Text);
+
+            for (int a = 0; a < iDegerleriSecili.Count; a++)//a=listelerde de gezienen indis değeri
+            {
+                int i = Convert.ToInt32(iDegerleriSecili[a]);
+                int j = Convert.ToInt32(jDegerleriSecili[a]);
+
+                if (String.Compare(dataGridView1.Rows[0].Cells[i].Value.ToString(), dataGridView1.Rows[j].Cells[0].Value.ToString()) == 0)
+                {
+                    //textBox8.Text += dataGridView1.Rows[0].Cells[i].Value.ToString();
+                    //textBox9.Text += dataGridView1.Rows[j].Cells[0].Value.ToString();
+                    skor += match;
+                }
+            }
+            //textBox10.Text = skor.ToString();
+            return skor;
+        }
+
+        public int sonSkoruBul(ArrayList liste1, ArrayList liste2)
+        {
+            int skor = 0;
+            ArrayList dizilim1 = new ArrayList();
+            ArrayList dizilim2 = new ArrayList();
+            int match = Convert.ToInt32(textBox1.Text);
+
+            for (int a = liste1.Count-1; a >= 0; a--)//a=listelerde de gezienen indis değeri
+            {
+                int i = Convert.ToInt32(liste1[a]);
+                int j = Convert.ToInt32(liste2[a]);
+
+                dataGridView1.Rows[j].Cells[i].Style.BackColor = Color.LightGreen;
+
+                if (String.Compare(dataGridView1.Rows[0].Cells[i].Value.ToString(), dataGridView1.Rows[j].Cells[0].Value.ToString()) == 0)
+                {
+                    dizilim1.Add(dataGridView1.Rows[0].Cells[i].Value.ToString());
+                    dizilim2.Add(dataGridView1.Rows[j].Cells[0].Value.ToString());
+                    skor += match;
+                }
+            }
+            foreach (var item in dizilim1)
+            {
+                textBox8.Text += item.ToString();
+            }
+
+            foreach (var item in dizilim2)
+            {
+                textBox9.Text += item.ToString();
+            }
+
+            textBox10.Text = skor.ToString();
+            return skor;
+        }
+        //public int enBuyukBul(ArrayList liste1)
+        //{
+        //    int enBuyuk = 0;
+        //    for (int i = 0; i < liste1.Count; i++)
+        //    {
+        //        if (Convert.ToInt32(liste1[i]) > enBuyuk)
+        //        {
+        //            enBuyuk = Convert.ToInt32(liste1[i]);
+        //        }
+
+        //    }
+        //    return enBuyuk;
+        //}
     }
 }
