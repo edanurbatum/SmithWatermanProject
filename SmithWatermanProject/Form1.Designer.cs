@@ -52,6 +52,8 @@ namespace SmithWatermanProject
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBox2 = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,7 +70,7 @@ namespace SmithWatermanProject
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(731, 11);
+            this.label7.Location = new System.Drawing.Point(640, 21);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(74, 13);
             this.label7.TabIndex = 33;
@@ -77,7 +79,7 @@ namespace SmithWatermanProject
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(634, 11);
+            this.label6.Location = new System.Drawing.Point(543, 21);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(28, 13);
             this.label6.TabIndex = 32;
@@ -85,21 +87,21 @@ namespace SmithWatermanProject
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(734, 110);
+            this.textBox7.Location = new System.Drawing.Point(643, 120);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(58, 20);
             this.textBox7.TabIndex = 31;
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(734, 44);
+            this.textBox6.Location = new System.Drawing.Point(643, 54);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(58, 20);
             this.textBox6.TabIndex = 30;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(508, 108);
+            this.button3.Location = new System.Drawing.Point(417, 118);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 29;
@@ -109,7 +111,7 @@ namespace SmithWatermanProject
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(508, 44);
+            this.button2.Location = new System.Drawing.Point(417, 54);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 24);
             this.button2.TabIndex = 28;
@@ -120,7 +122,7 @@ namespace SmithWatermanProject
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(459, 108);
+            this.label5.Location = new System.Drawing.Point(368, 118);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(30, 13);
             this.label5.TabIndex = 27;
@@ -129,7 +131,7 @@ namespace SmithWatermanProject
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(459, 50);
+            this.label4.Location = new System.Drawing.Point(368, 60);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(30, 13);
             this.label4.TabIndex = 26;
@@ -137,14 +139,14 @@ namespace SmithWatermanProject
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(608, 111);
+            this.textBox5.Location = new System.Drawing.Point(517, 121);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(100, 20);
             this.textBox5.TabIndex = 25;
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(608, 43);
+            this.textBox4.Location = new System.Drawing.Point(517, 53);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(100, 20);
             this.textBox4.TabIndex = 24;
@@ -208,7 +210,7 @@ namespace SmithWatermanProject
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(865, 263);
+            this.label9.Location = new System.Drawing.Point(867, 301);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(35, 13);
             this.label9.TabIndex = 39;
@@ -217,7 +219,7 @@ namespace SmithWatermanProject
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(773, 231);
+            this.label8.Location = new System.Drawing.Point(773, 261);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(27, 13);
             this.label8.TabIndex = 38;
@@ -225,7 +227,7 @@ namespace SmithWatermanProject
             // 
             // textBox10
             // 
-            this.textBox10.Location = new System.Drawing.Point(834, 228);
+            this.textBox10.Location = new System.Drawing.Point(839, 258);
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(100, 20);
             this.textBox10.TabIndex = 37;
@@ -246,11 +248,29 @@ namespace SmithWatermanProject
             this.textBox8.Size = new System.Drawing.Size(183, 39);
             this.textBox8.TabIndex = 35;
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(776, 78);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(120, 95);
+            this.listBox1.TabIndex = 40;
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Location = new System.Drawing.Point(903, 78);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(120, 95);
+            this.listBox2.TabIndex = 41;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(996, 536);
+            this.ClientSize = new System.Drawing.Size(1053, 536);
+            this.Controls.Add(this.listBox2);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.textBox10);
@@ -307,6 +327,8 @@ namespace SmithWatermanProject
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBox2;
     }
 }
 

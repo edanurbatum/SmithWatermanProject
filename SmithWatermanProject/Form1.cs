@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -175,10 +176,10 @@ namespace SmithWatermanProject
             degerleriAl();
             gridviewDuzenle(dizin1, dizin2);
             hizala(dizin1, dizin2);
-            //toparla(dizin1, dizin2);
+            toparla(dizin1, dizin2);
             //timer1.Stop();
         }
-        
+
         public int dizilimKarsilastirma(int i, int j)
         {
             int match = Convert.ToInt32(textBox1.Text);
@@ -343,21 +344,21 @@ namespace SmithWatermanProject
                     int parca1 = Convert.ToInt32(dataGridView1.Rows[j - 1].Cells[i - 1].Value);
                     t1 = karsilastirma + parca1;
 
-                    int parca2 = Convert.ToInt32(dataGridView1.Rows[j].Cells[i-1].Value);
+                    int parca2 = Convert.ToInt32(dataGridView1.Rows[j].Cells[i - 1].Value);
                     t2 = gap + parca2;
 
-                    int parca3 = Convert.ToInt32(dataGridView1.Rows[j-1].Cells[i].Value);
+                    int parca3 = Convert.ToInt32(dataGridView1.Rows[j - 1].Cells[i].Value);
                     t3 = gap + parca3;
 
-                    if (t1<0)
+                    if (t1 < 0)
                     {
                         t1 = 0;
                     }
-                    if (t2<0)
+                    if (t2 < 0)
                     {
                         t2 = 0;
                     }
-                    if (t3<0)
+                    if (t3 < 0)
                     {
                         t3 = 0;
                     }
@@ -365,6 +366,65 @@ namespace SmithWatermanProject
                     dataGridView1.Rows[j].Cells[i].Value = sonucc;
                 }
             }
+        }
+        void toparla(string[] dizin1, string[] dizin2)
+        {
+            ArrayList iDegerleri = new ArrayList();
+            ArrayList jDegerleri = new ArrayList();
+            ArrayList degerler = new ArrayList();
+
+            //int enBuyuk;
+            int geciciEnBuyuk = 0;
+
+            for (int j = dizin2.Length + 1; j >= 2; j--)
+            {
+                for (int i = dizin1.Length + 1; i >= 2; i--)
+                {
+                    if (Convert.ToInt32(dataGridView1.Rows[j].Cells[i].Value) > geciciEnBuyuk)
+                    {
+                        degerler.Add(Convert.ToInt32(dataGridView1.Rows[j].Cells[i].Value));
+                        iDegerleri.Add(i);
+                        jDegerleri.Add(j);
+                    }
+                }
+            }
+
+            //enBuyuk = enBuyukBul(degerler);
+            ArrayList iDegerleriSecili = new ArrayList();
+            ArrayList jDegerleriSecili = new ArrayList();
+
+            for (int a = 0; a < iDegerleri.Count; a++)
+            {
+                for (int b = 1; b < jDegerleri.Count; b++)
+                {
+                    int iFark = Convert.ToInt32(iDegerleri[a]) - Convert.ToInt32(iDegerleri[b]);
+                    int jFark = Convert.ToInt32(jDegerleri[a]) - Convert.ToInt32(jDegerleri[b]);
+
+                    if (iFark == 0 && jFark == 0)
+                    {
+
+                    }
+                    else if (iFark==jFark)//bunlar komşu bacım
+                    {
+                        listBox1.Items.Add(Convert.ToInt32(iDegerleri[a]));
+                        listBox2.Items.Add(Convert.ToInt32(jDegerleri[a]));
+                    }
+                }
+            }
+        }
+
+        public int enBuyukBul(ArrayList liste1)
+        {
+            int enBuyuk = 0;
+            for (int i = 0; i < liste1.Count; i++)
+            {
+                if (Convert.ToInt32(liste1[i]) > enBuyuk)
+                {
+                    enBuyuk = Convert.ToInt32(liste1[i]);
+                }
+
+            }
+            return enBuyuk;
         }
     }
 }
