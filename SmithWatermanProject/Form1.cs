@@ -243,7 +243,7 @@ namespace SmithWatermanProject
             int t1 = 0, t2 = 0, t3 = 0;
             Random rs = new Random(1);
 
-            for (int j = 1; j < dizin1.Length + 2; j++)//BU SAĞA DORUUUUUUUUU
+            for (int j = 1; j < dizin1.Length + 2; j++)//BU SAĞA DOĞRU
             {
                 int i = 1;
                 if (i == 1 && j == 1)
@@ -285,7 +285,7 @@ namespace SmithWatermanProject
                 dataGridView1.Rows[i].Cells[j].Value = sonucc;
             }
 
-            for (int i = 2; i < dizin2.Length + 2; i++)//BU AŞŞA DORUUUUUUUU
+            for (int i = 2; i < dizin2.Length + 2; i++)//BU AŞAĞI DOĞRU
             {
                 int j = 1;
                 if (i == 1 && j == 1)
@@ -335,7 +335,7 @@ namespace SmithWatermanProject
             Random rs = new Random(1);
             int fark = dizinBoyutFarkıBul(dizin1, dizin2);
 
-            for (int j = 2; j < dizin2.Length + 2; j++)//row //BU DA ORTAAAAAAAAAAA ama YANLIŞ
+            for (int j = 2; j < dizin2.Length + 2; j++)//row //BU DA ORTA
             {
                 for (int i = 2; i < dizin1.Length + 2; i++)//cell
                 {
@@ -373,7 +373,6 @@ namespace SmithWatermanProject
             ArrayList jDegerleri = new ArrayList();
             ArrayList degerler = new ArrayList();
 
-            //int enBuyuk;
             int geciciEnBuyuk = 0;
 
             for (int j = dizin2.Length + 1; j >= 2; j--)
@@ -389,7 +388,6 @@ namespace SmithWatermanProject
                 }
             }
 
-            //enBuyuk = enBuyukBul(degerler);
             ArrayList iDegerleriCop = new ArrayList();
             ArrayList jDegerleriCop = new ArrayList();
 
@@ -423,15 +421,6 @@ namespace SmithWatermanProject
             }
 
             yolla(iDegerleri, jDegerleri);
-
-            //foreach (int item in degerler)
-            //{
-            //    listBox1.Items.Add(item);
-            //}
-            //foreach (int item in jDegerleri)
-            //{
-            //    listBox2.Items.Add(item);
-            //}
         }
         void yolla(ArrayList iDegerleri, ArrayList jDegerleri)
         {
@@ -440,10 +429,6 @@ namespace SmithWatermanProject
             ArrayList iDegerleriSecili = new ArrayList();
             ArrayList jDegerleriSecili = new ArrayList();
             ArrayList degerlerSecili = new ArrayList();
-            //int a = 0;
-
-            //int i = Convert.ToInt32(iDegerleri[a]);
-            //int j = Convert.ToInt32(jDegerleri[a]);
 
             int i, j;
             int skor = 0;
@@ -465,7 +450,6 @@ namespace SmithWatermanProject
                     degerlerSecili.Add(komsu);
                     iKomsular.Add(i - 1);
                     jKomsular.Add(j - 1);
-                    //dataGridView1.Rows[j - 1].Cells[i - 1].Style.BackColor = Color.LightGreen;
                     i = i - 1;
                     j = j - 1;
                 }
@@ -489,14 +473,7 @@ namespace SmithWatermanProject
                 }
             }
             sonSkoruBul(iDegerleriSecili, jDegerleriSecili);
-            foreach (int item in iDegerleriSecili)
-            {
-                listBox1.Items.Add(item);
-            }
-            foreach (int item in jDegerleriSecili)
-            {
-                listBox2.Items.Add(item);
-            }
+           
         }
 
         public int skorBul(ArrayList iDegerleriSecili, ArrayList jDegerleriSecili)
@@ -513,16 +490,13 @@ namespace SmithWatermanProject
 
                 if (String.Compare(dataGridView1.Rows[0].Cells[i].Value.ToString(), dataGridView1.Rows[j].Cells[0].Value.ToString()) == 0)
                 {
-                    //textBox8.Text += dataGridView1.Rows[0].Cells[i].Value.ToString();
-                    //textBox9.Text += dataGridView1.Rows[j].Cells[0].Value.ToString();
                     skor += match;
                 }
             }
-            //textBox10.Text = skor.ToString();
             return skor;
         }
 
-        public int sonSkoruBul(ArrayList liste1, ArrayList liste2)
+        void sonSkoruBul(ArrayList liste1, ArrayList liste2)
         {
             int skor = 0;
             ArrayList dizilim1 = new ArrayList();
@@ -554,20 +528,6 @@ namespace SmithWatermanProject
             }
 
             textBox10.Text = skor.ToString();
-            return skor;
         }
-        //public int enBuyukBul(ArrayList liste1)
-        //{
-        //    int enBuyuk = 0;
-        //    for (int i = 0; i < liste1.Count; i++)
-        //    {
-        //        if (Convert.ToInt32(liste1[i]) > enBuyuk)
-        //        {
-        //            enBuyuk = Convert.ToInt32(liste1[i]);
-        //        }
-
-        //    }
-        //    return enBuyuk;
-        //}
     }
 }
