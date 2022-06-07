@@ -334,7 +334,6 @@ namespace SmithWatermanProject
             int gap = Convert.ToInt32(textBox3.Text);
             int t1 = 0, t2 = 0, t3 = 0;
             Random rs = new Random(1);
-            //int fark = dizinBoyutFarkıBul(dizin1, dizin2);
 
             for (int j = 2; j < dizin2.Length + 2; j++)//row //BU DA ORTA
             {
